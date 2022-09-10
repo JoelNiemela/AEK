@@ -176,11 +176,28 @@ function applyModifiers(element, modifiers) {
   }
 }
 
+function updateStats(state) {
+  let displayState = {...state};
+  delete displayState["section"];
+  delete displayState["ifWasFalse"];
+
+  let stats = document.getElementById("stats");
+  stats.innerHTML = "";
+  for (const key in displayState) {
+    stats.innerHTML += key + " : " + displayState[key] + "<br>";
+  }
+}
+
 function loadChapter(state) {
+  updateStats(state);
+
   const chapter = state.section;
+
   let book = document.getElementById("book");
   book.innerHTML = "";
+
   let lines = getChapter(chapter, state);
+
   let inputState = "body";
   for (let line of lines.split("\n")) {
     line = line.trim();
@@ -231,3 +248,12 @@ function loadChapter(state) {
 }
 
 loadChapter({"section": 0, "Eleni_relation": 0, "Jia_relation": 0});
+
+function showStats() {
+  let stats = document.getElementById("stats");
+  if (stats.style.display == "none") {
+    stats.style.display = "block";
+  } else {
+    stats.style.display = "none";
+  }
+}

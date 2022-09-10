@@ -13,3 +13,10 @@ P {
 .divider {
   margin-bottom: 14px;
 }
+
+.stats {
+  color: white;
+  background-color: darkgrey;
+  padding: 10px;
+  margin: 3px;
+}
