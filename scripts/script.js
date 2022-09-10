@@ -21,7 +21,6 @@ const chapters = {
     <p align="center">by Aurora Borden</p>
 
     <br>
-    <hr>
 
     ###
     [Continue] -> goto section 1
@@ -162,6 +161,9 @@ function loadChapter(state) {
       case "body":
         if (line.startsWith("###")) {
           inputState = "branches";
+          let divider = document.createElement("hr");
+          divider.classList.add("divider");
+          book.appendChild(divider);
         } else {
           let paragraph = document.createElement("p");
           paragraph.innerHTML = line;
@@ -176,7 +178,8 @@ function loadChapter(state) {
           let newState = parseBranch(branch, {...state});
           
           let button = document.createElement("a");
-          button.innerHTML = buttonText;
+          button.innerHTML = buttonText.slice(1, -1);
+          button.classList.add("branch");
           button.href = "javascript:void(0)";
           button.onclick = function() {
             loadChapter(newState);

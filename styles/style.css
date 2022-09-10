@@ -1,0 +1,11 @@
+.branch {
+  text-decoration: none;
+  color: white;
+  background-color: darkgrey;
+  padding: 5px;
+  margin: 3px;
+}
+
+.divider {
+  margin-bottom: 14px;
+}
