@@ -16,7 +16,12 @@ const chapters = {
     [Write this book] -> if ability = 0: goto section 1; else: goto section 2
     ###`,
   "0": `
-    Assassinating the Elven King
+    <h1 align="center">Assassinating the Elven King</h1>
+
+    <p align="center">by Aurora Borden</p>
+
+    <br>
+    <hr>
 
     ###
     [Continue] -> goto section 1
