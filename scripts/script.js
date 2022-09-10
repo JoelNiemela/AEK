@@ -1,3 +1,5 @@
+let showDebug = false;
+
 const chapters = {
   "demo":`
     This is an example chapter.
@@ -57,7 +59,14 @@ function getChapter(chapter, state) {
   let printState = {...state};
   delete printState["section"];
   delete printState["ifWasFalse"];
-  return "Chapter " + chapter + "\n" + JSON.stringify(printState) + chapters[chapter];
+
+  const chapterBody = chapters[chapter];
+
+  if (showDebug) {
+    return "Chapter " + chapter + "\n" + JSON.stringify(printState) + chapterBody;
+  }
+
+  return chapterBody;
 }
 
 function set(op, raw_lval, raw_rval) {
