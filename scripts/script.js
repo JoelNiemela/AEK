@@ -1,7 +1,14 @@
 let showDebug = false;
 
+function cloneState(state) {
+  let newState = {...state};
+  newState.checkpoints = [...state.checkpoints];
+
+  return newState;
+}
+
 function getChapter(chapter, state) {
-  let printState = {...state};
+  let printState = cloneState(state);
   delete printState["section"];
   delete printState["ifWasFalse"];
 
@@ -88,7 +95,7 @@ function parseBranch(branch, state) {
     effects = {...effects, ...parseAction(action, argument, state, effects["ifWasFalse"])};
   }
 
-  return {...state, ...effects};
+  return cloneState({...state, ...effects});
 }
 
 function parseModifiers(string) {
@@ -114,16 +121,31 @@ function applyModifiers(element, modifiers) {
 }
 
 function updateStats(state) {
-  let displayState = {...state};
+  let displayState = cloneState(state);
   if (!showDebug) {
     delete displayState["section"];
     delete displayState["ifWasFalse"];
+    delete displayState["checkpoints"];
   }
 
   let stats = document.getElementById("stats");
   stats.innerHTML = "";
   for (const key in displayState) {
     stats.innerHTML += key + " : " + displayState[key] + "<br>";
+  }
+
+  let checkpoints = document.getElementById("checkpoints");
+  checkpoints.innerHTML = "";
+  for (const checkpoint of state.checkpoints) {
+    let link = document.createElement("a");
+    link.innerHTML = checkpoint.section;
+    link.classList.add("link");
+    link.href = "javascript:void(0)";
+    link.onclick = function() {
+      loadChapter(checkpoint);
+    }
+    checkpoints.appendChild(link);
+    checkpoints.appendChild(document.createElement("br"));
   }
 }
 
@@ -137,6 +159,7 @@ function loadChapter(state) {
 
   let lines = getChapter(chapter, state);
 
+  let hasCheckpoint = false;
   let inputState = "body";
   for (let line of lines.split("\n")) {
     line = line.trim();
@@ -159,6 +182,8 @@ function loadChapter(state) {
           let divider = document.createElement("hr");
           divider.classList.add("divider");
           book.appendChild(divider);
+        } else if (line == "[CHECKPOINT]") {
+          hasCheckpoint = true;
         } else {
           let paragraph = document.createElement("p");
           paragraph.innerHTML = line;
@@ -169,13 +194,16 @@ function loadChapter(state) {
           const [buttonText, branch] = line.split("->").map(str => str.trim());
           if (branch == undefined) break;
           const [branchAction, _branchComment] = branch.split("#").map(str => str.trim());
-          let newState = parseBranch(branchAction, {...state});
+          let newState = parseBranch(branchAction, cloneState(state));
           
           let button = document.createElement("a");
           button.innerHTML = buttonText;
           button.classList.add("branch");
           button.href = "javascript:void(0)";
           button.onclick = function() {
+            if (hasCheckpoint) {
+              newState.checkpoints.push(cloneState(state));
+            }
             loadChapter(newState);
           };
           book.appendChild(button);
@@ -185,7 +213,7 @@ function loadChapter(state) {
   }
 }
 
-loadChapter({"section": "Title"});
+loadChapter({"section": "Title", "checkpoints": []});
 
 function showStats() {
   let stats = document.getElementById("stats");
@@ -193,5 +221,14 @@ function showStats() {
     stats.style.display = "block";
   } else {
     stats.style.display = "none";
+  }
+}
+
+function showCheckpoints() {
+  let checkpoints = document.getElementById("checkpoints");
+  if (checkpoints.style.display == "none") {
+    checkpoints.style.display = "block";
+  } else {
+    checkpoints.style.display = "none";
   }
 }

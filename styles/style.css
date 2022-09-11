@@ -8,13 +8,28 @@ P {
   background-color: darkgrey;
   padding: 5px;
   margin: 3px;
+  display: inline-block;
+}
+
+.menu-btn {
+  text-decoration: none;
+  color: white;
+  background-color: darkgrey;
+  padding: 5px;
+  margin: 3px;
+  display: block;
+}
+
+.link {
+  text-decoration: none;
+  color: white;
 }
 
 .divider {
   margin-bottom: 14px;
 }
 
-.stats {
+.menu-div {
   color: white;
   background-color: darkgrey;
   padding: 10px;
