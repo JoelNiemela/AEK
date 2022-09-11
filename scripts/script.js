@@ -41,7 +41,7 @@ function parseAction(action, argument, state, ifWasFalse = false) {
 
   switch (action[0]) {
     case "goto": {
-        effects["section"] = action[2];
+        effects["section"] = action.slice(1).join(" ").trim();
       } break;
     case "set": {
         const prop = action[1];
@@ -114,8 +114,10 @@ function applyModifiers(element, modifiers) {
 
 function updateStats(state) {
   let displayState = {...state};
-  delete displayState["section"];
-  delete displayState["ifWasFalse"];
+  if (!showDebug) {
+    delete displayState["section"];
+    delete displayState["ifWasFalse"];
+  }
 
   let stats = document.getElementById("stats");
   stats.innerHTML = "";
@@ -151,7 +153,7 @@ function loadChapter(state) {
           paragraph.innerHTML = text;
           applyModifiers(paragraph, modifiers);
           book.appendChild(paragraph);
-        } else if (line.startsWith("***")) {
+        } else if (line == "[CHOICES]") {
           inputState = "branches";
           let divider = document.createElement("hr");
           divider.classList.add("divider");
@@ -162,15 +164,14 @@ function loadChapter(state) {
           book.appendChild(paragraph);
         }
         break;
-      case "branches":
-        if (line.startsWith("***")) {
-          inputState = "end";
-        } else if (line.startsWith("[")) {
-          let [buttonText, branch] = line.split("->").map(str => str.trim());
-          let newState = parseBranch(branch, {...state});
+      case "branches": {
+          const [buttonText, branch] = line.split("->").map(str => str.trim());
+          if (branch == undefined) break;
+          const [branchAction, _branchComment] = branch.split("#").map(str => str.trim());
+          let newState = parseBranch(branchAction, {...state});
           
           let button = document.createElement("a");
-          button.innerHTML = buttonText.slice(1, -1);
+          button.innerHTML = buttonText;
           button.classList.add("branch");
           button.href = "javascript:void(0)";
           button.onclick = function() {
@@ -183,7 +184,7 @@ function loadChapter(state) {
   }
 }
 
-loadChapter({"section": 0, "Eleni_relation": 0, "Jia_relation": 0});
+loadChapter({"section": "Title", "Eleni_relation": 0, "Jia_relation": 0});
 
 function showStats() {
   let stats = document.getElementById("stats");

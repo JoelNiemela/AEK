@@ -27,7 +27,7 @@ def main():
 	with open(dst, 'w') as dst_file:
 		dst_file.write('const data = {')
 		for name, section in sections.items():
-			dst_file.write(f'"{name}":`{section}`')
+			dst_file.write(f'"{name}":`{section}`,')
 		dst_file.write('};')
 
 if __name__ == '__main__':
