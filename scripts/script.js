@@ -47,6 +47,7 @@ function parseAction(action, argument, state, ifWasFalse = false) {
         const prop = action[1];
         const op = action[2];
         const val = action[3];
+        if (state[prop] == undefined) state[prop] = 0;
         state[prop] = set(op, state[prop], val);
       } break;
     case "if": {
@@ -184,7 +185,7 @@ function loadChapter(state) {
   }
 }
 
-loadChapter({"section": "Title", "Eleni_relation": 0, "Jia_relation": 0});
+loadChapter({"section": "Title"});
 
 function showStats() {
   let stats = document.getElementById("stats");
