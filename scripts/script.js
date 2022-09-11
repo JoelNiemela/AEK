@@ -5,7 +5,7 @@ function getChapter(chapter, state) {
   delete printState["section"];
   delete printState["ifWasFalse"];
 
-  const chapterBody = chapters[chapter];
+  const chapterBody = data[chapter];
 
   if (showDebug) {
     return "Chapter " + chapter + "\n" + JSON.stringify(printState) + chapterBody;

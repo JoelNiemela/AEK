@@ -1,6 +1,4 @@
-
-
-const chapters = {
+const data = {
   "demo":`
     This is an example chapter.
     In it nothing really happens, but at least it exists.
