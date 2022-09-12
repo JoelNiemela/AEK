@@ -138,7 +138,7 @@ function updateStats(state) {
   checkpoints.innerHTML = "";
   for (const checkpoint of state.checkpoints) {
     let link = document.createElement("a");
-    link.innerHTML = checkpoint.section;
+    link.innerHTML = titles[checkpoint.section];
     link.classList.add("link");
     link.href = "javascript:void(0)";
     link.onclick = function() {
