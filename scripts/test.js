@@ -70,12 +70,37 @@ Continue -> goto Page 5
 [CHOICES]
 Continue -> goto Page 5
 `,
-"Page 5": `I stoke the fire for a minute, occasionally poking the wood with a stick. “So,” I ask as the silence becomes just too much, “do you have any idea how we’re going to get into the city?” I figured that as our senior, Petren would have had everything planned out - down to the last drop of blood being spilt.
-The elf simply shrugged and looked past me into the trees. “We will discuss it over supper.” Right on cue, Jia emerges from where Petren was looking, carrying four flasks and a metal pot all full of water. She gives us her signature look of disapproval, before setting the pot next to the fire and chucking the flasks into each of our tents. “You two haven’t even started on the food yet?” Petren and I share a look as Jia starts preparing everything to cook. “Don’t just sit there watching me, get up and help.” She demands. 
-A little over an hour later, the four of us sat around the fire eating soup and bread. Eleni had conveniently turned up right after the food was ready to serve. Petren finishes his meal first and sets aside his bowl. “So, the obvious first step is to get inside the city. It just so happens that this city is the largest and most heavily guarded in the world.”
+"Page 5": `I stoke the fire for a minute, occasionally poking the wood with a stick. “So,” I ask as the silence becomes just too much, “do you have any idea how we’re going to get into the city?” I figure that as our senior, Petren would have had everything already planned out - down to the last drop of blood being spilt.
+The elf simply shrugs and looks past me into the trees. “We will discuss it over supper.”
+Right on cue, Jia emerges from where Petren was looking, carrying four flasks and a metal pot all full of water. She gives us her signature look of disapproval, before setting the pot next to the fire and chucking the flasks into each of our tents. “You two haven’t even started on the food yet?” 
+Petren and I share a look as Jia starts preparing everything to cook. 
+“Don’t just sit there watching me, get up and help,” she demands. 
+
+[CHOICES]
+Continue -> goto Page 6
+`,
+"Page 6": `    A little over an hour later, the four of us sit around the fire eating soup and bread. Eleni had conveniently turned up right after the food was ready to be served. Petren finishes his meal first and sets aside his bowl.
+“So, the obvious first step is to get inside the city. It just so happens that this city is the largest and most heavily guarded in the world.”
 “We know,” Eleni says with a mouthful of bread. 
 “Selasera is the capital of Uyalon, the biggest and most heavily fortified country in the world.” Jia recites as if reading from a scroll. 
-Petren gave them both a stern glance before continuing. “I’m going over the details just to ensure we are all aware of what is going to be necessary, now if I may be allowed to finish...” At this, the girls decide to go back to eating. “Yes, Selasera is well guarded, but fortunately for us, the fortifications are more aimed towards large armies than a small group of assassins. 
+Petren gives them both a stern glance before continuing. “I’m going over the details just to ensure we are all aware of what is going to be necessary, now if I may be allowed to finish...” At this, the girls decide to go back to eating. “Yes, Selasera is well guarded, but fortunately for us, the fortifications are more aimed towards large armies than a small group of assassins. So, tonight, what we need is a plan of action to use in the morning.” To my surprise, Petren looks directly at me. “Well, Vargon, here’s a chance for you to prove your mettle. What do you suggest?”
+
+[CHOICES]
+“Let’s go in through the sewer system.” -> goto Page 7_1
+“We can go over the walls during the night.” -> goto Page 7_2
+“Why don’t we just walk in?” -> goto Page 7_3
+
+`,
+"Page 7_1": `#Chapter 2
+    “Let’s go in through the sewer system.” I say, trying to sound confident. 
+
+`,
+"Page 7_2": `#Chapter 2
+“We can go over the walls during the night.” I suggest. 
+
+`,
+"Page 7_3": `#Chapter 2
+    “Why don’t we just walk in?” I say with a shrug. “If they’ve no reason to suspect us, we could very well just stroll inside.” 
 
 `,
 };const titles = {
@@ -87,5 +112,9 @@ Petren gave them both a stern glance before continuing. “I’m going over the 
 "Page 3": " Talk with Petren",
 "Page 4_1": " “I got this”",
 "Page 4_2": " “Not sure I got this”",
-"Page 5": " Discuss the plan",
+"Page 5": " Time for Dinner",
+"Page 6": " Discuss the Plan",
+"Page 7_1": " Selaserian Sewers",
+"Page 7_2": " Climbing the Wall",
+"Page 7_3": " Just Walk Right In",
 };
