@@ -6146,7 +6146,7 @@ var $author$project$Main$fetchChapter = F2(
 					$elm$http$Http$expectJson,
 					$author$project$Main$GotChapter(gotoChapter),
 					$author$project$Main$chapterDecoder(name)),
-				url: './data/test/' + (name + '.json')
+				url: './data/AEK/' + (name + '.json')
 			});
 	});
 var $elm$core$Dict$fromList = function (assocs) {
