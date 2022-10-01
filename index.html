@@ -1,17 +1,17 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
-<script src="./data/test.js" defer></script>
-<script src="./scripts/script.js" defer></script>
-<link rel="stylesheet" href="./styles/style.css">
+	<meta charset="UTF-8">
+	<title>Edit Item</title>
+	<link rel="stylesheet" href="styles/style.css">
+	<script src="./scripts/main.js"></script>
 </head>
 <body>
-<div id="sidebar" style="position: absolute;">
-  <a href="javascript:void(0)" onclick="showStats()" class="menu-btn">Show Status</a>
-  <div id="stats" class="menu-div" style="display: none;"></div>
-  <a href="javascript:void(0)" onclick="showCheckpoints()" class="menu-btn">Checkpoints</a>
-  <div id="checkpoints" class="menu-div" style="display: none;"></div>
-</div>
-<div id="book" style="margin: 25px 30%;"></div>
+	<div id="elm"></div>
+	<script>
+		Elm.Main.init({
+			node: document.getElementById('elm'),
+		});
+	</script>
 </body>
 </html>

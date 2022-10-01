@@ -1,4 +1,5 @@
 import argparse
+import json
 
 def main():
 	argparser = argparse.ArgumentParser()
@@ -32,16 +33,12 @@ def main():
 			else:
 				sections[section] += line
 
-	with open(dst, 'w') as dst_file:
-		dst_file.write('const data = {\n')
-		for name, section in sections.items():
-			dst_file.write(f'"{name}": `{section}`,\n')
-		dst_file.write('};')
-
-		dst_file.write('const titles = {\n')
-		for section, title in titles.items():
-			dst_file.write(f'"{section}": "{title}",\n')
-		dst_file.write('};')
+	for chapter in sections.keys():
+		with open(f'{dst}/{chapter}.json', 'w') as dst_file:
+			dst_file.write(json.dumps({
+				'data': sections[chapter],
+				'title': titles[chapter],
+			}))
 
 if __name__ == '__main__':
 	main()
