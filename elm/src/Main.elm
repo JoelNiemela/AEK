@@ -176,7 +176,7 @@ update msg model =
 fetchChapter : Bool -> String -> Cmd Msg
 fetchChapter gotoChapter name =
     Http.get
-        { url = "./data/test/" ++ name ++ ".json"
+        { url = "./data/AEK/" ++ name ++ ".json"
         , expect = Http.expectJson (GotChapter gotoChapter) (chapterDecoder name)
         }
 
